@@ -345,6 +345,11 @@ base = peakutils.baseline(np.array(inverse))
 # Neat little tool for finding peaks - these are the markers!
 peaks = signal.find_peaks(inverse-base, prominence=500)
 
+assert len(peaks[0]) == len(markers), ("Signal peak in marker lane doesn't "
+    "match number of markers.\n{} signal peaks detected in marker lane. {} "
+    "marker bands expected.\nAdjust prominence setting appropriately.".format(
+    len(peaks[0]),len(markers)))
+
 #View the result of marker selection using matplotlib
 
 plt.subplot(1,3,1)
