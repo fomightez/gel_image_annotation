@@ -129,8 +129,6 @@ def plotly_gel_output(image,marker_text,marker_positions,lanes):
                     tickmode = 'array',
                     tickvals = [x for x in range(first_lane_pos,last_lane_pos,intervals)],
                     ticktext = list(range(1,lanes+1))), 
-                    #ticktext = list(map(lambda x: x*scale_factor, lanes)),
-                    #tickvals = list(map(lambda x: x*scale_factor, lanes))), 
             yaxis = go.layout.YAxis(
                     visible=True,
                     range = [0, img_height*scale_factor],
@@ -146,7 +144,7 @@ def plotly_gel_output(image,marker_text,marker_positions,lanes):
                     linewidth=4,
                     linecolor='#000',
                     tickmode = 'array',
-                    tickvals = list(map(lambda x: (img_height*scale_factor)-(x*scale_factor), marker_positions)),
+                    tickvals = [(img_height*scale_factor)-(x*scale_factor) for x in marker_positions],
                     ticktext = marker_text,),
                     # the scaleanchor attribute ensures that the aspect ratio stays constant
 #                    scaleanchor = 'x'),
@@ -204,9 +202,9 @@ def plot_gel_image(input_gel,gel_lanes=12,markers=['200','140','136','110','87',
     cropped=crop_to_colour(image)    
     first_lane=cropped[0:len(cropped),0:int(len(cropped[0])/gel_lanes)]
     first_lane_flat=flatten_for_plot(first_lane, 1)
-    inverse=list(map(lambda x: 1-x, first_lane_flat))    
+    inverse = [1-x for x in first_lane_flat]  
     base = peakutils.baseline(np.array(inverse))
-    peaks=signal.find_peaks(inverse-base, prominence=500)
+    peaks = signal.find_peaks(inverse-base, prominence=500)
 
     plotly_gel_output(cropped,markers,peaks[0],gel_lanes)
   
@@ -271,7 +269,7 @@ def plotly_plot_lanes(image,gel_lanes=12):
     lane=1
     for x in range(0,lane_length*gel_lanes,lane_length):
         flat=flatten_for_plot(image[0:len(image),x:x+lane_length], 1) 
-        inverse=list(map(lambda x: 1-x, flat))
+        inverse = [1-x for x in flat]  
         base= peakutils.baseline(np.array(inverse))
         trace= go.Scatter(
                     name=str(lane)+': Lane '+str(lane),
@@ -339,13 +337,13 @@ first_lane=cropped[0:len(cropped),0:int(len(cropped[0])/gel_lanes)]
 first_lane_flat=flatten_for_plot(first_lane, 1)
 
 # Needs to be inversed to make the numbers positive
-inverse=list(map(lambda x: 1-x, first_lane_flat))
+inverse = [1-x for x in first_lane_flat]
 
 # Neat little tool for estimating the baseline
 base = peakutils.baseline(np.array(inverse))
 
 # Neat little tool for finding peaks - these are the markers!
-peaks=signal.find_peaks(inverse-base, prominence=500)
+peaks = signal.find_peaks(inverse-base, prominence=500)
 
 #View the result of marker selection using matplotlib
 
@@ -356,7 +354,7 @@ plt.ylim((0,len(inverse)))
 plt.plot(list(reversed(inverse-base)), range(0,len(inverse)), marker=None, linestyle='-')
 plt.subplot(1,3,3)
 plt.ylim((0,len(inverse)))
-plt.scatter([0]*len(peaks[0]),list(map(lambda x: np.max(len(inverse))-x, peaks[0])))
+plt.scatter([0]*len(peaks[0]),[np.max(len(inverse))-x for x in peaks[0]])
 plt.show()
 
 #Plot the cropped image using plotly to make it look nice
