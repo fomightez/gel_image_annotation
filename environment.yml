@@ -1,6 +1,7 @@
 name: gel_annotation-binderized
 channels:
   - conda-forge
+  - plotly
   - defaults
 dependencies:
   - scipy
