@@ -55,7 +55,6 @@ RUN cd $HOME/work;\
                 pandas \
                 peakutils; \
     git clone --single-branch -b master https://github.com/fomightez/gel_image_annotation.git;\
-    cd notebooks;\
     chmod -R 777 $HOME/work/gel_image_annotation;
 
 # Download orca AppImage, extract it, and make it executable under xvfb
