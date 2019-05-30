@@ -9,7 +9,7 @@ dependencies:
   - pillow
   - pandas-datareader>=0.5.0
   - plotly
-  - plotly plotly-orca
+  - plotly-orca
   - psutil
   - pip
   - pip:
