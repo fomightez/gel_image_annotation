@@ -56,7 +56,7 @@ RUN cd $HOME/work;\
                 peakutils; \
     git clone --single-branch -b master https://github.com/fomightez/gel_image_annotation.git;\
     cd notebooks;\
-    chmod -R 777 $HOME/work/orca-plotly-dockerfile;
+    chmod -R 777 $HOME/work/gel_image_annotation;
 
 # Download orca AppImage, extract it, and make it executable under xvfb
 RUN wget https://github.com/plotly/orca/releases/download/v1.1.1/orca-1.1.1-x86_64.AppImage -P /home
@@ -68,6 +68,6 @@ RUN printf '#!/bin/bash \nxvfb-run --auto-servernum --server-args "-screen 0 640
 RUN chmod 777 /usr/bin/orca
 RUN chmod -R 777 /home/squashfs-root/
 
-WORKDIR $HOME/work/orca-plotly-dockerfile
+WORKDIR $HOME/work/gel_image_annotation
 
 USER $NB_UID
