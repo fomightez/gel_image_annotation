@@ -10,11 +10,6 @@ Seeing if [this](https://twitter.com/Steve_Harborne/status/1133064277445627904) 
 
 Simple script for automatically annotating SDS-PAGE images 
 
-# The demo interactive plots
-
-The interactive plots made by the demonstration will not render as output when you first open the active notebook after launching via MyBinder.org. You must run the cells in the notebook again and then they will show up. This is a security feature to block abuse.
-
-Similarly, the interactive versions of the plots do not get rendered when viewing the static notebooks in Github; however, **if you view the static notebook page via nbviewer [here](https://github.com/fomightez/gel_image_annotation/blob/master/index.ipynb), the interactive Plotly plots will render and be interactive**.
 
 
 ## Going beyond the built-in demo gel
@@ -24,6 +19,14 @@ To upload your own data, click on the Jupyter logo in the upper left to access a
 Then change `gel_file` assignment to specify your gel name.
 
 (Drag-and-drop is possible with the the JupyterLab interface; however, you'd probably want to switch back after uploading your gel as currently plotting is more reliable in the classic notebook interface. See [here](https://github.com/binder-examples/jupyterlab#start-jupyterlab-after-you-start-your-binder) about switching interfaces.)
+
+
+## A note on the interactive plots generated
+
+The interactive plots made by the demonstration will not render as output when you first launch the active notebook via MyBinder.org. You must run the cells in the notebook again, and then they will show up in the output cell area. This is a security feature to block abuse.
+
+The interactive versions of the plots do not get rendered when viewing the static notebooks in Github; however, **if you view the static notebook page via nbviewer [here](https://github.com/fomightez/gel_image_annotation/blob/master/index.ipynb), the interactive Plotly plots will render and be interactive**.
+
 
 ----
 
