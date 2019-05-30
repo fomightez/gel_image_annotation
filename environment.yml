@@ -11,5 +11,6 @@ dependencies:
   - plotly
   - plotly-orca
   - psutil
+  - pip
   - pip:
     - opencv-python-headless
