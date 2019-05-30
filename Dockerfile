@@ -48,11 +48,11 @@ RUN cd $HOME/work;\
     pip install matplotlib \
                 plotly \
                 ipywidgets \
-                psutil; \
-                opencv-python-headless; \
-                scipy; \
-                pillow; \
-                pandas; \
+                psutil \
+                opencv-python-headless \
+                scipy \
+                pillow \
+                pandas \
                 peakutils; \
     git clone --single-branch -b master https://github.com/fomightez/gel_image_annotation.git;\
     cd notebooks;\
