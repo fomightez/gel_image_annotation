@@ -1,4 +1,4 @@
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/fomightez/gel_image_annotation/master?filepath=index.ipynb)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/fomightez/gel_image_annotation/master?urlpath=lab/tree/index.ipynb)
 
 # gel_image_annotation
 
@@ -14,11 +14,11 @@ Simple script for automatically annotating SDS-PAGE images
 
 ## Going beyond the built-in demo gel
 
-To upload your own data, click on the Jupyter logo in the upper left to access a typical file browser that allows file uploads.
+To upload your own data, drag and drop into the file browser panel on the left.
 
 Then change `gel_file` assignment to specify your gel name.
 
-(Drag-and-drop is possible with the the JupyterLab interface; however, you'd probably want to switch back after uploading your gel as currently plotting is more reliable in the classic notebook interface. See [here](https://github.com/binder-examples/jupyterlab#start-jupyterlab-after-you-start-your-binder) about switching interfaces.)
+(If you prefer the classic notebook interface, see [here](https://github.com/binder-examples/jupyterlab#start-jupyterlab-after-you-start-your-binder). You can change the end of the url from `lab` to `tree` to switch to classic.)
 
 
 ## A note on the interactive plots generated
@@ -32,7 +32,7 @@ The interactive versions of the plots do not get rendered when viewing the stati
 
 ## Technical details
 
-*Many thanks to mathieuboudreau for working out using Plotly's orca with the MyBinder.org service.* This section details that as it explains why this repo needs a Dockerfile to be binderized for full-featured abilities.  
+*Many thanks to mathieuboudreau for working out using Plotly's orca with the MyBinder.org service.* This section details that as it explains why this repo needs a Dockerfile (or `apt.txt` and `postBuild`) to be binderized for full-featured abilities.  
 Everything worked as in [the original demo]((https://twitter.com/Steve_Harborne/status/1133064277445627904)) with simply a repo with a `requirements.txt` file (link to that version is [here](https://github.com/fomightez/gel_image_annotation/tree/4421855f2b3a7d1ea53008456b4393371ec3cb10). However, I wanted to add automatic static image generation of the nice interactive plotly graphs to the workflow as that would automate things further for use of the generated content elsewhere, such as in a lab notebook. It looked like all from [here](https://plot.ly/python/static-image-export/) that all I'd need to do is add plot-orca using conda. I tried it first in an active session and it said it wasn't valid orca installation and listed what normally would be helpful installation directions if I wasn't inside a Binder session. I thought perhaps I just needed to switch to using conda to install, and so I removed the `requirements.txt` file I was using to direct dependency isntallation and tried including `plotly-orca` among the dependencies list in `environment.yml`. However, that resulted in the following:
 
 ```bash
@@ -55,9 +55,11 @@ orca with Xvfb."
 
 That is in line with what mathieuboudreau ended up addressing.
 
+Turns out that adding in `apt.txt` and `postBuild` can replace the additional abilities the Dockerfile was able to bring beyond `requirements.txt`, see [here](https://discourse.jupyter.org/t/using-plotlys-orca-to-generate-static-plots-in-binder-served-sessions/1232/3).Curiously, a library was required, namely `libasound2`, that even the Dockerfile didn't seem to need in order to run orca. Keeping the Dockerfile but as a hidden file here since it may be useful for future efforts by myself or others. Especially since quite different approach for the last steps dealing with getting orca ready. In particular, I couldn't find a way to work with `usr/bin` in postBuild (or terminal) without permissions problems even though it seems to work for the Dockerfile. 
+
 ----
 
 Click the `launch binder` badge below to begin:
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/fomightez/gel_image_annotation/master?filepath=index.ipynb)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/fomightez/gel_image_annotation/master?urlpath=lab/tree/index.ipynb)
 

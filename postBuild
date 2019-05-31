@@ -1,5 +1,13 @@
 #!/bin/bash
 
+
+# enable Plotly to work in Jupyterlab using the extension that fortunatley I noticed shreyasbapat pointed out at 
+# https://community.plot.ly/t/plots-not-showing-up-in-jupyter-lab-plotly-3-0/11542; 
+# command from https://github.com/jupyterlab/jupyter-renderers/tree/master/packages/plotly-extension.
+# This adds drag-and-drop which would make easier for adding your own data. Plus the interface makes it easier 
+# for downloading results.
+jupyter labextension install @jupyterlab/plotly-extension
+
 # Download orca AppImage, extract it, and make it executable under xvfb
 wget https://github.com/plotly/orca/releases/download/v1.1.1/orca-1.1.1-x86_64.AppImage -P .
 chmod 777 orca-1.1.1-x86_64.AppImage 
