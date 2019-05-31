@@ -12,6 +12,6 @@ chmod 777 orca-1.1.1-x86_64.AppImage
 # in a binder-compatible way that is done in 
 # https://github.com/aborruso/bashnotebook/blob/626d3781460b459e525eb2758772d70ec7e650fe/binder/postBuild
 mkdir -p ~/.local/bin
-printf '#!/bin/bash \nxvfb-run --auto-servernum --server-args "-screen 0 640x480x24" squashfs-root/app/orca "$@"' > ~/.local/bin/orca
+printf '#!/bin/bash \nxvfb-run --auto-servernum --server-args "-screen 0 640x480x24" ./squashfs-root/app/orca "$@"' > ~/.local/bin/orca
 chmod 777 ~/.local/bin/orca
 chmod -R 777 squashfs-root/
