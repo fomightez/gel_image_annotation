@@ -18,7 +18,7 @@ Go beyond the built-in demonstration by adding your own gel image.
 To upload your own data, drag and drop into the file browser panel on the left.  
 Then change `gel_file` assignment to specify your gel name.
 
-(If you prefer the classic notebook interface, see [here](https://github.com/binder-examples/jupyterlab#start-jupyterlab-after-you-start-your-binder). You can change the end of the url from `lab` to `tree` to switch to classic.)
+(If you prefer the classic notebook interface, you can change the end of the url from `lab` to `tree` to switch to classic. See [here](https://github.com/binder-examples/jupyterlab#start-jupyterlab-after-you-start-your-binder) for more about that.)
 
 
 ## A note on the interactive plots generated
