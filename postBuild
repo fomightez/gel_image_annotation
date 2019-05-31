@@ -8,7 +8,7 @@ chmod 777 orca-1.1.1-x86_64.AppImage
 # Note about first line: the Dockerfile used the absolute location, I want to try executing with relative and
 # so taking advantage of what is covered in https://unix.stackexchange.com/questions/194142/why-when-we-run-a-executable-file-we-need-to-add-ahead
 ./orca-1.1.1-x86_64.AppImage --appimage-extract
-mkdir /usr/bin/orca
+touch /usr/bin/orca
 chmod 777 /usr/bin/orca
 chmod -R 777 /home/squashfs-root/
 printf '#!/bin/bash \nxvfb-run --auto-servernum --server-args "-screen 0 640x480x24" squashfs-root/app/orca "$@"' > /usr/bin/orca
