@@ -1,7 +1,6 @@
 name: gel_annotation-binderized
 channels:
   - conda-forge
-  - plotly
   - defaults
 dependencies:
   - scipy
@@ -11,7 +10,6 @@ dependencies:
   - peakutils
   - pandas-datareader>=0.5.0
   - plotly
-  - plotly-orca
   - psutil
   - pip
   - pip:

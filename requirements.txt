@@ -5,3 +5,4 @@ pandas
 peakutils
 matplotlib
 plotly
+psutil
