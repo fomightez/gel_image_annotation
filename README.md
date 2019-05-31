@@ -12,10 +12,10 @@ Simple script for automatically annotating SDS-PAGE images
 
 
 
-## Going beyond the built-in demo gel
+## Use your own data
 
-To upload your own data, drag and drop into the file browser panel on the left.
-
+Go beyond the built-in demonstration by adding your own gel image.  
+To upload your own data, drag and drop into the file browser panel on the left.  
 Then change `gel_file` assignment to specify your gel name.
 
 (If you prefer the classic notebook interface, see [here](https://github.com/binder-examples/jupyterlab#start-jupyterlab-after-you-start-your-binder). You can change the end of the url from `lab` to `tree` to switch to classic.)
