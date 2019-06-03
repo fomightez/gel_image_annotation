@@ -91,6 +91,62 @@ def crop_to_colour(image):
     cropped = image[x_min+x_20:x_max-x_20, y_min+y_20:y_max-y_20]
     return cropped
 
+def determine_good_prom_setting(inverse,base,markers,
+    prom_to_try=None, max_prominence_setting=1000):
+    '''
+    Takes the list of `inverse` values, the list of `base` values, and the list 
+    of markers and calculates a good prominence setting where number of peaks in 
+    the marker lane equals the number of expected marker bands.
+    Optionally, the prominence setting to use can be assigned.
+    `max_prominence_setting` is assumed to be 1000 unless otherwise provided
+    and half that will be tried as an initial attempt before scanning for a good
+    value.
+    
+    Returns float or integer value if setting for prominence can be determined.
+    Returns None if cannot determine value.
+    '''
+    # First try setting if it was provided or otherwise try setting it to half
+    # the maximal value. Also deal with if already at maximum.
+    if prom_to_try:
+        prom = prom_to_try
+    else:
+        prom = max_prominence_setting/2
+    peaks = signal.find_peaks(inverse-base, prominence=prom)
+    if prom >= max_prominence_setting and not (len(peaks[0]) == len(markers)):
+        return None
+    if len(peaks[0]) == len(markers):
+        return prom
+
+    # Scan to find: calculate all the possible integer values for 1 to the max
+    peaks_dict = {x:len(
+        signal.find_peaks(inverse-base, prominence=x)[0]) for x in range (
+        1,max_prominence_setting+1)}
+    #check if any produce values matching the number of markers
+    good_ones = [k for k,v in peaks_dict.items() if v == len(markers)]
+    from statistics import mean 
+    if good_ones:
+        return mean(good_ones)
+    # Otherwise check if there is a possibility and zoom in on that.
+    # Also make sure there is a possibility. There should be at least one 
+    # integer where the number of peaks is greater than the number of markers &
+    # one where number of markers is less. Otherwise it isn't going to work
+    # and return `None`
+    too_many = [k for k,v in peaks_dict.items() if v > len(markers)]
+    too_few = [k for k,v in peaks_dict.items() if v < len(markers)]
+    if not too_many or not too_few:
+        return None
+    # Scan in greater detail the space, presumably fractional space at this 
+    # point, between the max integer producing too many peaks and the minium 
+    # integer producing too few. Use of linspace to get steps, pissibly 
+    # fractional, based on https://stackoverflow.com/a/477635/8508004.
+    num_steps = 100
+    zoom_dict = {x:len(signal.find_peaks(
+        inverse-base, prominence=x)[0]) for x in np.linspace(
+        max(too_many),min(too_few)+1,num_steps)}
+    possibilities = [k for k,v in zoom_dict.items() if v == len(markers)]
+    if possibilities:
+        return mean(possibilities)
+    return None
 
 def plotly_gel_output(image,marker_text,marker_positions,lanes):
     
@@ -204,7 +260,9 @@ def plot_gel_image(input_gel,gel_lanes=12,markers=['200','140','136','110','87',
     first_lane_flat=flatten_for_plot(first_lane, 1)
     inverse = [1-x for x in first_lane_flat]  
     base = peakutils.baseline(np.array(inverse))
-    peaks = signal.find_peaks(inverse-base, prominence=500)
+    peaks = signal.find_peaks(
+        inverse-base, prominence=determine_good_prom_setting(
+        inverse,base,markers))
 
     plotly_gel_output(cropped,markers,peaks[0],gel_lanes)
   
@@ -343,7 +401,8 @@ inverse = [1-x for x in first_lane_flat]
 base = peakutils.baseline(np.array(inverse))
 
 # Neat little tool for finding peaks - these are the markers!
-peaks = signal.find_peaks(inverse-base, prominence=500)
+peaks = signal.find_peaks(inverse-base, prominence=determine_good_prom_setting(
+    inverse,base,markers))
 
 assert len(peaks[0]) == len(markers), ("Signal peak in marker lane doesn't "
     "match number of markers.\n{} signal peaks detected in marker lane. {} "
