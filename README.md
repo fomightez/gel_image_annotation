@@ -25,7 +25,7 @@ Then change `gel_file` assignment to specify your gel name.
 
 The interactive plots made by the demonstration will not render as output when you first launch the active notebook via MyBinder.org. You must run the cells in the notebook again, and then they will show up in the output cell area. This is a security feature to block abuse.
 
-The interactive versions of the plots do not get rendered when viewing the static notebooks in Github; however, **if you view the static notebook page via nbviewer [here](https://github.com/fomightez/gel_image_annotation/blob/master/index.ipynb), the interactive Plotly plots will render and be interactive**.
+The interactive versions of the plots do not get rendered when viewing the static notebooks in Github; however, **if you view the static notebook page via nbviewer [here](https://nbviewer.jupyter.org/github/fomightez/gel_image_annotation/blob/master/index.ipynb), the interactive Plotly plots will render and be interactive**.
 
 ----
 
