@@ -8,7 +8,7 @@ Click a `launch binder` badge anywhere on this page to begin.
 
 Seeing if [this](https://twitter.com/Steve_Harborne/status/1133064277445627904) can be binderized?
 
-Simple script for automatically annotating SDS-PAGE images 
+Simple script for automatically annotating SDS-PAGE gel images. 
 
 
 
