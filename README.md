@@ -61,7 +61,7 @@ Following that, it would be nice to convert that notebook over to a widget based
 ## Related utilities by others
 
 - [GellieR Gel Image Annotator](https://gitlab.com/gringer/gellier)
->"My gel lane quantification / annotation program:" [SOURCE](https://twitter.com/gringene_bio/status/1560764198744797184)
+>"My gel lane quantification / annotation program:" [SOURCE](https://twitter.com/gringene_bio/status/1560764198744797184) (The post has a nice graphic illustrating its use.)
 
 - Trying to find this repo again, I found searching 'github gel annotation' brings up a items that look useful.
 
