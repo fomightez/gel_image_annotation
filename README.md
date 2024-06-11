@@ -60,6 +60,8 @@ Following that, it would be nice to convert that notebook over to a widget based
 
 ## Related utilities by others
 
+- [GelAnalyze]([https://gitlab.com/gringer/gellier](http://gelanalyzer.com/?i=1))
+>"For anyone looking for freeware electrophoresis gel analysis software, check out GelAnalyzer 23.1 by Dr. Istvan Lazar Jr. and Dr. Istvan Lazar Sr..." [SOURCE]([https://twitter.com/gringene_bio/status/1560764198744797184](https://x.com/theBentoLab/status/1800573881079546181)) (The post has a nice graphic illustrating its use.)
 - [GellieR Gel Image Annotator](https://gitlab.com/gringer/gellier)
 >"My gel lane quantification / annotation program:" [SOURCE](https://twitter.com/gringene_bio/status/1560764198744797184) (The post has a nice graphic illustrating its use.)
 
